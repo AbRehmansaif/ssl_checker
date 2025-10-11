@@ -1,0 +1,51 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Django specific ===
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static_root/
+.env
+.env.local
+.env.production
+.env.development
+
+# === Virtual environment ===
+venv/
+env/
+ENV/
+.venv/
+.virtualenv/
+pip-wheel-metadata/
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# === OS-specific ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+**/migrations/
+!**/migrations/__init__.py
+
+# === VSCode workspace ===
+.vscode/
+
+# === Cache folders ===
+__pycache__/
+.cache/
