@@ -49,3 +49,5 @@ Desktop.ini
 # === Cache folders ===
 __pycache__/
 .cache/
+
+website_report.csv
