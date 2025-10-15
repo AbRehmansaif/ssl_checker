@@ -1,4 +1,4 @@
-# 💻 AI-Powered-Code-Review-System
+# 💻 ssl_checker
 
 ![Current Version](https://img.shields.io/badge/version-v0.1-blue)
 ![GitHub contributors](https://img.shields.io/github/contributors/AbRehmansaif/README-Template)
@@ -21,10 +21,9 @@
 🎨 Bootstrap UI – Clean and responsive interface for entering URLs and viewing results.
 
 ### </> Built With
-* ![Python](https://img.shields.io/badge/python-3.1%2B-blue?logo=python&logoColor=white)
-* ![Django][Django.com] - Backend Framework
-* ![Django Templates][DRF.com] - Django Templates for Frontend
-* ![GitHub][GitHub.com] - Version Control Platform
+* ![Python](https://img.shields.io/badge/python-3.13.5%2B-blue?logo=python&logoColor=white)
+- Backend Framework
+- Django Templates for Frontend
 
 
 ---
