@@ -25,10 +25,15 @@ from django.shortcuts import render
 from .utils import check_website
 from .models import WebsiteCheck  # ✅ Import your model
 import pandas as pd
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+from django.http import HttpResponse
+import csv
 
 
 def home(request):
     results = []
+    validator = URLValidator()
 
     if request.method == "POST":
         urls = request.POST.get("urls").split()
@@ -36,6 +41,17 @@ def home(request):
             # Add protocol if missing
             if not url.startswith("http"):
                 url = "https://" + url
+
+            # ✅ Validate URL before processing
+            try:
+                validator(url)
+            except ValidationError:
+                results.append({
+                    "url": url,
+                    "status": "Invalid URL",
+                    "ssl_days_left": None
+                })
+                continue
 
             # Get result from your utils.py
             result = check_website(url)
@@ -53,3 +69,15 @@ def home(request):
         df.to_csv("website_report.csv", index=False)
 
     return render(request, "core/home.html", {"results": results})
+
+
+def download_report(request):
+    # Query all WebsiteCheck objects
+    checks = WebsiteCheck.objects.all().order_by('-checked_at')
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=website_report.csv'
+    writer = csv.writer(response)
+    writer.writerow(['url', 'status_code', 'ssl_expiry_days', 'checked_at'])
+    for check in checks:
+        writer.writerow([check.url, check.status_code, check.ssl_expiry_days, check.checked_at])
+    return response
